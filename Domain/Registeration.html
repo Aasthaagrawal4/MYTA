@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+
+<script>
+
+
+var userArray = [];
+function init(){
+document.getElementById("tablerows").innerHTML = "";
+function init(){
+if(localStorage.userRecord){
+userArray= JSON.parse(localStorage.register);
+for(var i=0;i<userArray.length; i++){
+var email = userArray[i].email;
+var password=userArray[i].password;
+var repeatPassworduser=Array[i].repeatpassword;
+prepareTableCell(firstName, lastName, email, password, repeatPassword);
+}
+}
+}
+
+function onRegisterPressed(){
+
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+var repeatPassword = document.getElementById("repeatpassword").value;
+
+var useObj={email:email, password:password, repeatpassword:repeatpassword};
+userArray.push(useObj);
+localStorage.userRecord=JSON.stringify(userArray);
+init();
+
+document.getElementById("email").value="";
+document.getElementById("password").value="";
+document.getElementById("repeatpass").value="";
+}
+
+function prepareTableCell(index,email, password, repeatPassword){
+var table = document.getElementById("tablesrow");
+var row = table.insertRow();
+var row=table.insertRow();
+var row=table.insertRow();
+var emailCell=row.insertCell(0);
+var passwordCell=row.insertCell(1);
+var repeatPasswordCell=row.insertCell(2);
+
+
+
+emailCell.innerHTML = email;
+passwordCell.innerHTML = password;
+repeatPasswordCell.innerHTML = repeatPassword;
+actionCell.innerHTML='<button>Edit</button><br/><button onclick="deleteTableRow('+index+'>Delete</button>';
+}
+
+function deleteTableRow(index){
+var table= document.getElementById("regetable");
+table.deleteRow(index+1);
+userArray.splice(index,1);
+localStorage.userRecord = JSON.stringify(userArray);
+init();
+}
+</script>
+</head>
+
+
+<body onload="init()">
+<div>
+<header><h1>Register</h1></header>
+<aside class="leftbar">
+<div>
+
+
+<fieldset>
+<label for="email">Email</label>
+<input type="text" placeholder"enter first name" id="email">
+</fieldset>
+
+
+<fieldset>
+<label for="password">Password</label>
+<input type="text" placeholder"enter first name" id="password">
+</fieldset>
+
+
+<fieldset>
+<label for="repeatpassword">Repeat Password</label>
+<input type="text" placeholder"enter first name" id="repeatpassword">
+</fieldset>
+
+<fieldset>
+<label for="submit">&nbsp;</label>
+<button id="submit" onclick="onRegisterPressed()">Register</button>
+</fieldset>
+</div>
+</aside>
+<aside>
+<table id="regtable">
+<thead>
+<tr>
+<th>Email</th>
+<th>Password</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="tablesrow">
+</tbody>
+</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
